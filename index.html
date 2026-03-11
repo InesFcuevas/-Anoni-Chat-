@@ -87,7 +87,25 @@ muro.prepend(div)
 document.getElementById("texto").value=""
 }
 
+  function comentar(boton){
+
+let input = boton.previousElementSibling
+let comentarios = boton.nextElementSibling
+
+let texto = input.value
+
+if(texto === "") return
+
+let p = document.createElement("p")
+p.textContent = texto
+
+comentarios.appendChild(p)
+
+input.value = ""
+}
+
 </script>
 
 </body>
 </html>
+
