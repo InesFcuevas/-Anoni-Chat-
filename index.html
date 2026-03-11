@@ -63,22 +63,22 @@ margin-top:10px;
 <div id="muro"></div>
 
 <script>
-
 function publicar(){
 
-let texto=document.getElementById("texto").value
-let color=document.getElementById("color").value
+let texto = document.getElementById("texto").value
+let color = document.getElementById("color").value
 
-if(texto==="") return
+if(texto === "") return
 
-let muro=document.getElementById("muro")
+let muro = document.getElementById("muro")
 
-let div=document.createElement("div")
-div.className="mensaje"
+let div = document.createElement("div")
+div.className = "mensaje"
 
-div.innerHTML=
+div.innerHTML =
 "<p style='color:"+color+"'>"+texto+"</p>"+
 "<input placeholder='comentar...'>"+
+"<input type='color' class='colorComentario'>"+
 "<button onclick='comentar(this)'>Enviar</button>"+
 "<div class='comentarios'></div>"
 
@@ -87,25 +87,28 @@ muro.prepend(div)
 document.getElementById("texto").value=""
 }
 
-  function comentar(boton){
+function comentar(boton){
 
-let input = boton.previousElementSibling
+let input = boton.previousElementSibling.previousElementSibling
+let colorInput = boton.previousElementSibling
 let comentarios = boton.nextElementSibling
 
 let texto = input.value
+let color = colorInput.value
 
 if(texto === "") return
 
 let p = document.createElement("p")
 p.textContent = texto
+p.style.color = color
 
 comentarios.appendChild(p)
 
-input.value = ""
+input.value=""
 }
-
 </script>
 
 </body>
 </html>
+
 
