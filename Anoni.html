@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>⭐Anoni Chat⭐</title>
+<style>
+body{
+font-family: Arial;
+background:#003556;
+margin:0;
+padding:20px;
+}
+
+h1{
+text-align:center;
+}
+
+#form{
+background:rgb(72, 74, 76);
+padding:15px;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+textarea{
+width:100%;
+height:80px;
+}
+
+button{
+margin-top:10px;
+padding:10px;
+cursor:pointer;
+}
+
+.mensaje{
+background:rgb(255, 255, 255);
+padding:10px;
+margin-top:10px;
+border-radius:8px;
+}
+
+.comentarios{
+margin-left:15px;
+margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>⭐Anoni Chat⭐</h1>
+
+<div id="form">
+<textarea id="texto" placeholder="Escribe tu mensaje anónimo..."></textarea>
+
+<label>Elige un color:</label>
+<input type="color" id="color">
+
+<button onclick="publicar()">Publicar</button>
+</div>
+
+<div id="muro"></div>
+
+<script>
+
+function publicar(){
+
+let texto=document.getElementById("texto").value
+let color=document.getElementById("color").value
+
+if(texto==="") return
+
+let muro=document.getElementById("muro")
+
+let div=document.createElement("div")
+div.className="mensaje"
+
+div.innerHTML=
+"<p style='color:"+color+"'>"+texto+"</p>"+
+"<input placeholder='comentar...'>"+
+"<button onclick='comentar(this)'>Enviar</button>"+
+"<div class='comentarios'></div>"
+
+muro.prepend(div)
+
+document.getElementById("texto").value=""
+}
+
+</script>
+
+</body>
+</html>
