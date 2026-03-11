@@ -63,6 +63,44 @@ margin-top:10px;
 <div id="muro"></div>
 
 <script>
+  const DURACION = 24 * 60 * 60 * 1000
+
+function guardarMensaje(texto,color){
+let mensajes = JSON.parse(localStorage.getItem("mensajes")) || []
+
+mensajes.push({
+texto:texto,
+color:color,
+fecha:Date.now()
+})
+
+localStorage.setItem("mensajes",JSON.stringify(mensajes))
+}
+
+function cargarMensajes(){
+
+let mensajes = JSON.parse(localStorage.getItem("mensajes")) || []
+let muro = document.getElementById("muro")
+
+mensajes = mensajes.filter(m => Date.now() - m.fecha < DURACION)
+
+localStorage.setItem("mensajes",JSON.stringify(mensajes))
+
+mensajes.reverse().forEach(m => {
+
+let div=document.createElement("div")
+div.className="mensaje"
+
+div.innerHTML=
+"<p style='color:"+m.color+"'>"+m.texto+"</p>"+
+"<input placeholder='comentar...'>"+
+"<button onclick='comentar(this)'>Enviar</button>"+
+"<div class='comentarios'></div>"
+
+muro.appendChild(div)
+
+})
+}
 function publicar(){
 
 let texto = document.getElementById("texto").value
@@ -70,6 +108,11 @@ let color = document.getElementById("color").value
 
 if(texto === "") return
 
+guardarMensaje(texto,color)
+
+location.reload()
+}
+  
 let muro = document.getElementById("muro")
 
 let div = document.createElement("div")
@@ -106,9 +149,12 @@ comentarios.appendChild(p)
 
 input.value=""
 }
+
+cargarMensajes()
 </script>
 
 </body>
 </html>
+
 
 
