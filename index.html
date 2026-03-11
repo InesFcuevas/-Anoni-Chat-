@@ -62,6 +62,17 @@ margin-top:10px;
 
 <div id="muro"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script>
+
+const supabase = supabase.createClient(
+"https://txaheniphvdgwbgolvvf.supabase.co",
+"sb_secret_hFUhAMEFAs42zaiSH8XS8w_l66QeDL_"
+)
+
+</script>
+  
 <script>
   const DURACION = 24 * 60 * 60 * 1000
 
@@ -155,6 +166,7 @@ cargarMensajes()
 
 </body>
 </html>
+
 
 
 
